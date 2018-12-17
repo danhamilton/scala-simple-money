@@ -21,7 +21,7 @@ class MoneySpec extends FlatSpec {
   }
 
 
-  "Money Ops" should "create correct money from Big Int for GBP and USD" in {
+  "Money Ops" should "create correct money from Big Decimal for GBP and USD" in {
 
     val expectedGBP = Money(10, GBP)
     val expectedUSD = Money(20, USD)
@@ -31,6 +31,21 @@ class MoneySpec extends FlatSpec {
 
     assert(actualGBP == expectedGBP)
     assert(actualUSD == expectedUSD)
+  }
+
+  it should "create correct money from Int for GBP and USD" in {
+
+    val expectedGBP = Money(10, GBP)
+    val expectedUSD = Money(20, USD)
+    val expectedEUR = Money(30, EUR)
+
+    val actualGBP = 10.gbp
+    val actualUSD = 20.usd
+    val actualEUR = 30.asCurrency(EUR)
+
+    assert(actualGBP == expectedGBP)
+    assert(actualUSD == expectedUSD)
+    assert(actualEUR == expectedEUR)
   }
 
   it should "create correct money from asCurrency" in {
